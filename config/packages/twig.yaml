@@ -1,6 +1,14 @@
 twig:
-    file_name_pattern: '*.twig'
+  default_path: "%kernel.project_dir%/templates"
+  date:
+    format: "d/m/Y" # Format français jour/mois/année
+    interval_format: "%d jours"
+  number_format:
+    decimals: 2
+    decimal_point: ","
+    thousands_separator: " "
+  file_name_pattern: "*.twig"
 
 when@test:
-    twig:
-        strict_variables: true
+  twig:
+    strict_variables: true

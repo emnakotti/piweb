@@ -1,0 +1,75 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Mes Réservations
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-5">
+		<h2>Mes Réservations</h2>
+
+		{% if reservations|length > 0 %}
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Service</th>
+							<th>Date</th>
+							<th>Quantité</th>
+							<th>Statut</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for reservation in reservations %}
+							<tr>
+								<td>{{ reservation.service.nomService }}</td>
+								<td>{{ reservation.dateReservation|date('d/m/Y H:i') }}</td>
+								<td>{{ reservation.quantite }}</td>
+								<td>
+									{% set badge_classes = {
+                                        'En attente': 'bg-warning text-dark',
+                                        'Confirmée': 'bg-success',
+                                        'Annulée': 'bg-danger'
+                                    } %}
+									<span class="badge {{ badge_classes[reservation.statut] }} rounded-pill">
+										{{ reservation.statut }}
+									</span>
+								</td>
+								<td>
+									<div class="d-flex gap-2">
+										{% if reservation.statut == 'En attente' %}
+											<a href="{{ path('app_reservation_edit', {'id': reservation.idReservation}) }}" class="btn btn-sm btn-primary">
+												<i class="bi bi-pencil"></i>
+												Modifier
+											</a>
+											<form method="post" action="{{ path('app_reservation_delete', {'id': reservation.idReservation}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?');">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.idReservation) }}">
+												<button class="btn btn-sm btn-danger">
+													<i class="bi bi-trash"></i>
+													Supprimer
+												</button>
+											</form>
+										{% else %}
+											<button class="btn btn-sm btn-secondary" disabled>
+												<i class="bi bi-pencil"></i>
+												Modifier
+											</button>
+											<button class="btn btn-sm btn-secondary" disabled>
+												<i class="bi bi-trash"></i>
+												Supprimer
+											</button>
+										{% endif %}
+									</div>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% else %}
+			<div class="alert alert-info">
+				Vous n'avez aucune réservation pour le moment.
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

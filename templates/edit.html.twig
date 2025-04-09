@@ -1,0 +1,178 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Modifier Réservation -
+	{{ reservation.service.nomService }}
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div
+				class="col-lg-8">
+				{# En-tête #}
+				<div class="d-flex justify-content-between align-items-center mb-4">
+					<h1 class="h3 mb-0">
+						<i class="bi bi-pencil-square text-primary me-2"></i>Modifier la réservation
+					</h1>
+					<a href="{{ path('app_reservations_list') }}" class="btn btn-outline-secondary">
+						<i class="bi bi-arrow-left me-1"></i>Retour
+					</a>
+				</div>
+
+				{# Carte principale #}
+				<div class="card shadow-sm">
+					<div class="card-header bg-light">
+						<div class="d-flex justify-content-between align-items-center">
+							<h2 class="h5 mb-0">
+								<i class="bi bi-calendar-event me-2"></i>
+								{{ reservation.service.nomService }}
+							</h2>
+							<span class="badge bg-{{ reservation.statut == 'En attente' ? 'warning' : (reservation.statut == 'Confirmée' ? 'success' : 'danger') }} rounded-pill">
+								<i class="bi bi-{{ reservation.statut == 'En attente' ? 'clock' : (reservation.statut == 'Confirmée' ? 'check-circle' : 'x-circle') }} me-1"></i>
+								{{ reservation.statut }}
+							</span>
+						</div>
+					</div>
+
+					<div class="card-body">
+						{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+						{# Section Informations #}
+						<div class="row mb-4">
+							<div class="col-md-6 mb-3">
+								<div class="form-floating">
+									<input type="text" class="form-control-plaintext" id="service" value="{{ reservation.service.nomService }}" readonly>
+									<label for="service">
+										<i class="bi bi-tag me-1"></i>Service</label>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="form-floating">
+									<input type="text" class="form-control-plaintext" id="date" value="{{ reservation.dateReservation|format_datetime('medium', 'short') }}" readonly>
+									<label for="date">
+										<i class="bi bi-calendar-date me-1"></i>Date de réservation</label>
+								</div>
+							</div>
+						</div>
+
+						{# Section Détails #}
+						<div class="row mb-4">
+							<div class="col-md-4 mb-3">
+								<div class="form-floating">
+									<input type="number" class="form-control-plaintext" value="{{ form.quantite.vars.value }}" readonly>
+									<label>
+										<i class="bi bi-123 me-1"></i>Quantité actuelle</label>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-floating">
+									<input type="text" class="form-control-plaintext" value="{{ reservation.service.prix|format_currency('TND') }}" readonly>
+									<label>
+										<i class="bi bi-currency-exchange me-1"></i>Prix unitaire</label>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-floating">
+									<input type="text" class="form-control-plaintext" value="{{ (form.quantite.vars.value * reservation.service.prix)|format_currency('TND') }}" readonly>
+									<label>
+										<i class="bi bi-calculator me-1"></i>Total</label>
+								</div>
+							</div>
+						</div>
+
+						{# Champ de modification #}
+
+						{# Message statut #}
+						{% if reservation.statut != 'En attente' %}
+							<div class="alert alert-{{ reservation.statut == 'Confirmée' ? 'success' : 'danger' }} d-flex align-items-center mb-4">
+								<i class="bi bi-{{ reservation.statut == 'Confirmée' ? 'check-circle' : 'exclamation-triangle' }} me-2 fs-4"></i>
+								<div>
+									<strong>Cette réservation a été
+										{{ reservation.statut|lower }}.</strong>
+									{% if reservation.statut == 'Confirmée' %}
+										Confirmée le
+										{{ reservation.dateConfirmation|format_datetime('medium', 'short') }}
+									{% else %}
+										Annulée le
+										{{ reservation.dateAnnulation|format_datetime('medium', 'short') }}
+									{% endif %}
+									<div class="mt-1">Seules les réservations en attente peuvent être modifiées.</div>
+								</div>
+							</div>
+						{% endif %}
+
+						{# Actions #}
+						<div class="d-flex justify-content-between border-top pt-3">
+							<div>
+								{% if reservation.statut == 'En attente' %}
+									<button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#cancelModal">
+										<i class="bi bi-x-circle me-1"></i>Annuler
+									</button>
+								{% endif %}
+							</div>
+							<div>
+								<button type="submit" class="btn btn-primary me-2" {% if reservation.statut != 'En attente' %} disabled {% endif %}>
+									<i class="bi bi-check-circle me-1"></i>Enregistrer
+								</button>
+								<a href="{{ path('app_reservations_list') }}" class="btn btn-outline-secondary">
+									<i class="bi bi-x-circle me-1"></i>Abandonner
+								</a>
+							</div>
+						</div>
+
+						<div class="row mb-4 mt-3">
+							<div class="col-md-6">
+								{{ form_row(form.quantite, {
+			'label': 'Nouvelle quantité *',
+			'attr': {
+				'class': 'form-control',
+				'min': 1,
+				'max': reservation.service.quantiteMateriel + reservation.quantite,
+				'disabled': reservation.statut != 'En attente'
+			},
+			'row_attr': {'class': 'form-floating'}
+		}) }}
+							</div>
+						</div>
+
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Modal de confirmation d'annulation #}
+	{% if reservation.statut == 'En attente' %}
+		<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bg-danger text-white">
+						<h5 class="modal-title" id="cancelModalLabel">
+							<i class="bi bi-exclamation-triangle me-2"></i>Confirmer l'annulation
+						</h5>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Êtes-vous sûr de vouloir annuler cette réservation ? Cette action est irréversible.</p>
+						<div class="alert alert-warning mt-3">
+							<i class="bi bi-info-circle me-2"></i>
+							Cette réservation sera définitivement supprimée du système.
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+							<i class="bi bi-arrow-left me-1"></i>Retour
+						</button>
+						<form method="post" action="{{ path('app_reservation_delete', {'id': reservation.idReservation}) }}">
+							<input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ reservation.idReservation) }}">
+							<button type="submit" class="btn btn-danger">
+								<i class="bi bi-trash me-1"></i>Confirmer l'annulation
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

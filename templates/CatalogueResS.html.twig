@@ -1,0 +1,553 @@
+{# templates/catalogue/services.html.twig #}
+{% extends 'base1.html.twig' %}
+
+{% block title %}Catalogue des Services | EVENTUS
+{% endblock %}
+
+{% block description %}Découvrez notre catalogue complet de services événementiels - location de matériel, équipe technique, lieux exclusifs et solutions clés en main.
+{% endblock %}
+
+{% block keywords %}services événementiels, location matériel événement, équipe technique, lieux réception, organisation événement
+{% endblock %}
+
+{% block content %}
+	<main
+		class="main">
+
+		<!-- Hero Banner Section -->
+		<section
+			id="services-hero" class="hero-section position-relative overflow-hidden">
+			<!-- Video ou Image de fond -->
+			<div class="hero-background">
+				<img src="assets/img/event.jpg" class="img-fluid" alt="Services Événementiels" loading="lazy">
+			</div>
+
+			<!-- Overlay avec dégradé -->
+			<div class="hero-overlay"></div>
+
+			<!-- Contenu -->
+			<div class="container position-relative z-index-1">
+				<div
+					class="row min-vh-80 align-items-center">
+					<!-- 80% de la hauteur d'écran -->
+					<div class="col-lg-8 mx-auto text-center" data-aos="sequence">
+						<h1 class="text-white mb-4 animate-pop-in" style="--delay: 0.4s">Nos Services Événementiels</h1>
+						<p class="text-white lead mb-5 animate-pop-in" style="--delay: 0.8s">Découvrez l'ensemble de nos prestations pour des événements réussis</p>
+
+						<!-- Bouton animé -->
+						<div class="animate-pop-in" style="--delay: 1.2s">
+							<a href="#services-grid" class="btn btn-orange btn-lg px-5 py-3 hover-glow">
+								Explorer nos services
+								<i class="bi bi-arrow-down-circle ms-2"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Animation vague en bas -->
+			<div class="hero-wave">
+				<svg viewbox="0 0 1200 120" preserveaspectratio="none">
+					<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+					<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+					<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+				</svg>
+			</div>
+		</section>
+
+		<style>
+			/* Animation Keyframes */
+			@keyframes popIn {
+				0% {
+					opacity: 0;
+					transform: translateY(20px) scale(0.95);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0) scale(1);
+				}
+			}
+
+			@keyframes float {
+				0,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-10px);
+				}
+			}
+
+			@keyframes glow {
+				0% {
+					box-shadow: 0 0 0 0 rgba(244, 124, 32, 0.4);
+				}
+				70% {
+					box-shadow: 0 0 0 15px rgba(244, 124, 32, 0);
+				}
+				100% {
+					box-shadow: 0 0 0 0 rgba(244, 124, 32, 0);
+				}
+			}
+
+			/* Styles de base */
+			.hero-section {
+				height: 100vh;
+				min-height: 600px;
+			}
+
+			.hero-background {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.hero-background img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				animation: zoomInOut 20s infinite alternate;
+			}
+
+			.hero-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(135deg, rgba(244,124,32,0.2) 0%, rgba(0,0,0,0.7) 100%);
+			}
+
+			/* Animations */
+			.animate-pop-in {
+				animation: popIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+				opacity: 0;
+			}
+
+			.hover-glow:hover {
+				animation: glow 1.5s infinite;
+			}
+
+			.hero-wave {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 150px;
+			}
+
+			.hero-wave svg {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.shape-fill {
+				fill: #fff;
+			}
+
+			/* Animation de zoom doux pour l'image de fond */
+			@keyframes zoomInOut {
+				0% {
+					transform: scale(1);
+				}
+				100% {
+					transform: scale(1.05);
+				}
+			}
+
+			/* Responsive */
+			@media(max-width: 768px) {
+				.hero-section {
+					min-height: 500px;
+					height: auto;
+					padding-top: 100px;
+					padding-bottom: 100px;
+				}
+			}
+		</style>
+
+		<script>
+			// Initialisation des animations
+document.addEventListener('DOMContentLoaded', function () { // Délais d'animation dynamiques
+document.querySelectorAll('[style*="--delay"]').forEach(el => {
+const delay = el.style.getPropertyValue('--delay');
+el.style.animationDelay = delay;
+});
+
+// Animation de la vague au scroll
+window.addEventListener('scroll', function () {
+const wave = document.querySelector('.hero-wave');
+const scrollPos = window.scrollY;
+wave.style.transform = `translateY(${
+scrollPos * 0.3
+}px)`;
+});
+});
+		</script>
+
+		<!-- Services Grid Section -->
+		<section id="services-grid" class="section py-5">
+			<div class="container">
+				<div class="section-title text-center mb-5" data-aos="fade-up">
+					<h2>Nos Catégories de Services</h2>
+					<p>Choisissez parmi nos solutions professionnelles</p>
+				</div>
+
+				<div
+					class="row gx-4 gy-4">
+					<!-- Service Staff -->
+					<div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+						<div class="service-card card h-100 border-0 shadow-sm overflow-hidden transition-all">
+							<div class="card-img-top overflow-hidden position-relative">
+								<img src="assets/img/services/technique.jpg" class="img-fluid zoom-on-hover" alt="Services Techniques">
+								<div class="img-overlay"></div>
+							</div>
+							<div class="card-body d-flex flex-column">
+								<h3 class="h5 position-relative">
+									<span class="title-underline">Équipe Événementielle</span>
+								</h3>
+								<ul class="list-unstyled mb-4">
+									<li class="py-2 d-flex align-items-center hover-item">
+										<i class="bi bi-person-check-fill text-primary me-2 flex-shrink-0 icon-animate"></i>
+										<span>Hôtesses/Stewards professionnels</span>
+									</li>
+									<li class="py-2 d-flex align-items-center hover-item">
+										<i class="bi bi-tools text-primary me-2 flex-shrink-0 icon-animate"></i>
+										<span>Techniciens spécialisés</span>
+									</li>
+									<li class="py-2 d-flex align-items-center hover-item">
+										<i class="bi bi-camera-fill text-primary me-2 flex-shrink-0 icon-animate"></i>
+										<span>Photographes & Vidéastes</span>
+									</li>
+								</ul>
+								<a href="{{ path('app_catalogue_servicesS') }}" class="btn btn-outline-primary mt-auto hover-grow py-2 d-flex align-items-center justify-content-center">
+									<i class="bi bi-box-seam me-2 icon-animate"></i>
+									<span>Voir catalogue complet</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Service Matériel -->
+					<div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+						<div class="service-card card h-100 border-0 shadow-sm overflow-hidden transition-all">
+							<div class="card-img-top overflow-hidden position-relative">
+								<img src="assets/img/services/logistique.jpg" class="img-fluid zoom-on-hover" alt="Logistique Événementielle">
+								<div class="img-overlay"></div>
+							</div>
+							<div class="card-body d-flex flex-column">
+								<h3 class="h5 position-relative">
+									<span class="title-underline">Matériel Événementiel</span>
+								</h3>
+								<ul class="list-unstyled mb-4">
+									<li class="py-2 d-flex align-items-start hover-item">
+										<i class="bi bi-easel-fill text-primary me-2 mt-1 flex-shrink-0 icon-animate"></i>
+										<div>
+											<strong>Mobilier design</strong>
+											<div class="small text-muted">Chaises ghost, tables modulables</div>
+										</div>
+									</li>
+									<li class="py-2 d-flex align-items-start hover-item">
+										<i class="bi bi-balloon-fill text-primary me-2 mt-1 flex-shrink-0 icon-animate"></i>
+										<div>
+											<strong>Décoration thématique</strong>
+											<div class="small text-muted">Luminaires LED, structures florales</div>
+										</div>
+									</li>
+									<li class="py-2 d-flex align-items-start hover-item">
+										<i class="bi bi-signpost-split-fill text-primary me-2 mt-1 flex-shrink-0 icon-animate"></i>
+										<div>
+											<strong>Signalétique premium</strong>
+											<div class="small text-muted">Kakemonos, écrans interactifs</div>
+										</div>
+									</li>
+								</ul>
+								<a href="{{ path('app_catalogue_servicesM') }}" class="btn btn-outline-primary mt-auto hover-grow py-2 d-flex align-items-center justify-content-center">
+									<i class="bi bi-box-seam me-2 icon-animate"></i>
+									<span>Voir catalogue complet</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<style>
+			/* Animations principales */
+			.transition-all {
+				transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+			}
+
+			/* Effet carte */
+			.service-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+			}
+
+			/* Image zoom */
+			.zoom-on-hover {
+				transition: transform 0.6s ease;
+			}
+			.service-card:hover .zoom-on-hover {
+				transform: scale(1.05);
+			}
+			.img-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+				opacity: 0;
+				transition: opacity 0.4s ease;
+			}
+			.service-card:hover .img-overlay {
+				opacity: 1;
+			}
+
+			/* Animation titre */
+			.title-underline::after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 2px;
+				background: #0d6efd;
+				transition: width 0.4s ease;
+			}
+			.service-card:hover .title-underline::after {
+				width: 100%;
+			}
+
+			/* Animation éléments de liste */
+			.hover-item:hover {
+				background: rgba(13, 110, 253, 0.05);
+				transform: translateX(5px);
+			}
+			.hover-item {
+				transition: all 0.3s ease;
+				border-radius: 4px;
+				padding-left: 8px;
+				margin-left: -8px;
+			}
+
+			/* Animation icônes */
+			.icon-animate {
+				transition: transform 0.3s ease;
+			}
+			.hover-item:hover .icon-animate,
+			.btn:hover .icon-animate {
+				transform: scale(1.2);
+			}
+
+			/* Bouton */
+			.hover-grow:hover {
+				transform: scale(1.02);
+				box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
+			}
+		</style>
+
+		<!-- Pricing Section -->
+		<section id="services-pricing" class="section bg-light py-5">
+			<div class="container">
+				<div class="section-title text-center mb-5" data-aos="fade-up">
+					<h2>Nos Formules Tarifaires</h2>
+					<p>Des solutions adaptées à tous les budgets</p>
+				</div>
+
+				<div
+					class="row g-4">
+					<!-- Formule Basique -->
+					<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+						<div class="card pricing-card h-100 border-orange-light">
+							<div class="card-header bg-white text-center py-4">
+								<h3 class="h4">Formule Basique</h3>
+								<div class="price mt-3">
+									<span class="h2 text-muted">À partir de</span>
+									<span class="display-4 text-orange">299€</span>
+									<span class="text-muted">/jour</span>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-unstyled">
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Matériel standard
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										1 technicien dédié
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Support téléphonique
+									</li>
+									<li class="mb-2 text-muted">
+										<i class="bi bi-x text-secondary me-2"></i>
+										Pas de personnel supplémentaire
+									</li>
+								</ul>
+							</div>
+							<div class="card-footer bg-white border-0 text-center pb-4">
+								<a href="#reservation" class="btn btn-orange">Choisir cette formule</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Formule Standard -->
+					<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+						<div class="card pricing-card h-100 border-orange shadow-lg">
+							<div class="card-header bg-orange text-white text-center py-4">
+								<h3 class="h4">Formule Standard</h3>
+								<div class="price mt-3">
+									<span class="h2">À partir de</span>
+									<span class="display-4 text-white">599€</span>
+									<span class="text-light">/jour</span>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-unstyled">
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Matériel haut de gamme
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										2 techniciens dédiés
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										2 hôtesses/stewards
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Support premium
+									</li>
+								</ul>
+							</div>
+							<div class="card-footer bg-white border-0 text-center pb-4">
+								<a href="#reservation" class="btn btn-orange">Choisir cette formule</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Formule Premium -->
+					<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+						<div class="card pricing-card h-100 border-orange-light">
+							<div class="card-header bg-white text-center py-4">
+								<h3 class="h4">Formule Premium</h3>
+								<div class="price mt-3">
+									<span class="h2 text-muted">Sur devis</span>
+									<span class="display-4 text-orange">Personnalisé</span>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-unstyled">
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Solution clé en main
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Équipe complète
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Matériel dernier cri
+									</li>
+									<li class="mb-2">
+										<i class="bi bi-check text-orange me-2"></i>
+										Coordinateur dédié
+									</li>
+								</ul>
+							</div>
+							<div class="card-footer bg-white border-0 text-center pb-4">
+								<a href="#contact" class="btn btn-orange">Demander un devis</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<style>
+		/* Couleurs orange personnalisées */:root
+		{
+			--orange: #F47C20; /* Couleur principale EVENTUS */
+			--orange-light: #F8A145;
+			--orange-dark: #E05D00;
+		}
+
+		.text-orange {
+			color: var(--orange) !important;
+		}
+		.bg-orange {
+			background-color: var(--orange) !important;
+		}
+		.border-orange {
+			border: 2px solid var(--orange) !important;
+		}
+		.border-orange-light {
+			border: 1px solid var(--orange-light) !important;
+		}
+
+		.btn-orange {
+			background-color: var(--orange);
+			border-color: var(--orange);
+			color: white;
+		}
+
+		.btn-orange:hover {
+			background-color: var(--orange-dark);
+			border-color: var(--orange-dark);
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(244, 124, 32, 0.3);
+		}
+
+		/* Animation des cartes */
+		.pricing-card {
+			transition: all 0.3s ease;
+		}
+
+		.pricing-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Style pour la carte mise en avant */
+		.border-orange {
+			box-shadow: 0 5px 15px rgba(244, 124, 32, 0.2);
+		}
+	</style>
+
+	<!-- CTA Section -->
+	<section class="section py-5 bg-primary text-white">
+		<div class="container text-center">
+			<h2 class="mb-4">Prêt à réserver vos services ?</h2>
+			<p class="lead mb-4">Notre équipe est à votre disposition pour vous conseiller</p>
+			<a href="{{ path('homepage') }}" class="btn btn-light btn-lg px-4">Contactez-nous</a>
+		</div>
+	</section>
+
+</main>{% endblock %}{% block javascripts %}
+{{ parent() }}
+<script>
+	// Scripts spécifiques à la page des services
+document.addEventListener('DOMContentLoaded', function () { // Animation des cartes de service au survol
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach(card => {
+card.addEventListener('mouseenter', function () {
+this.style.transform = 'translateY(-10px)';
+this.style.transition = 'transform 0.3s ease';
+});
+card.addEventListener('mouseleave', function () {
+this.style.transform = 'translateY(0)';
+});
+});
+});
+</script>{% endblock %}

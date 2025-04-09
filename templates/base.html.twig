@@ -1,17 +1,1552 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="en">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<title>EVENTUS</title>
+		<meta name="description" content="">
+		<meta
+		name="keywords" content="">
+
+		<!-- Favicons -->
+		<link href="assets/img/logo.png" rel="icon">
+		<link
+		href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com" rel="preconnect">
+		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link
+		href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+		<!-- Main CSS File -->
+		<link
+		href="assets/css/main.css" rel="stylesheet">
+
+	<!-- =======================================================
+																																																																												  * Template Name: Medicio
+																																																																												  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
+																																																																												  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+																																																																												  * Author: BootstrapMade.com
+																																																																												  * License: https://bootstrapmade.com/license/
+																																																																												  ======================================================== -->
+	</head>
+
+	<body class="index-page">
+
+		<header id="header" class="header sticky-top">
+
+			<div class="topbar d-flex align-items-center">
+				<div class="container d-flex justify-content-center justify-content-md-between">
+					<div class="d-none d-md-flex align-items-center">
+						<i class="bi bi-clock me-1"></i>
+						{% set days = {
+    'Monday': 'Lundi',
+    'Tuesday': 'Mardi',
+    'Wednesday': 'Mercredi',
+    'Thursday': 'Jeudi',
+    'Friday': 'Vendredi',
+    'Saturday': 'Samedi',
+    'Sunday': 'Dimanche'
+  } %}
+						{% set months = {
+    'January': 'janvier',
+    'February': 'février',
+    'March': 'mars',
+    'April': 'avril',
+    'May': 'mai',
+    'June': 'juin',
+    'July': 'juillet',
+    'August': 'août',
+    'September': 'septembre',
+    'October': 'octobre',
+    'November': 'novembre',
+    'December': 'décembre'
+  } %}
+						{{ days["now"|date('l')] }}
+						{{ "now"|date('d') }}
+						{{ months["now"|date('F')] }}
+						• 8h à 22h
+					</div>
+					<div class="d-flex align-items-center">
+						<i class="bi bi-phone me-1"></i>
+						Appelez-nous maintenant au 25344007
+					</div>
+				</div>
+			</div>
+			<!-- End Top Bar -->
+
+			<div class="branding d-flex align-items-center">
+
+				<div class="container position-relative d-flex align-items-center justify-content-end">
+					<a
+						href="{{ path('homepage') }}" class="logo d-flex align-items-center me-auto">
+						{# Texte EVENTUS avec les classes existantes #}
+						<span class="sitename">EVENTUS</span>
+					</a>
+
+					<nav id="navmenu" class="navmenu">
+						<ul>
+							<li>
+								<a href="#hero" class="active">Accueil</a>
+							</li>
+							<li>
+								<a href="#about">A propos de nous</a>
+							</li>
+							<li>
+								<a href="#services">Services</a>
+							</li>
+							<li>
+								<a href="#departments">Contact</a>
+							</li>
+							<li>
+								<a href="#doctors">Equipe</a>
+							</li>
+							<li class="dropdown">
+								<a href="#">
+									<span>Catalogues</span>
+									<i class="bi bi-chevron-down toggle-dropdown"></i>
+								</a>
+								<ul>
+									<li>
+										<a href="#">Nos Catalogues</a>
+									</li>
+									<li class="dropdown">
+										<a href="#">
+											<span>Catalogues Détaillé</span>
+											<i class="bi bi-chevron-down toggle-dropdown"></i>
+										</a>
+										<ul>
+											<li><a href="#">Nos Pack</a></li>
+											<li><a href="{{path('Cataloguepage')}}">Nos Services</a></li>
+											<li><a href="#">Nos Locaux</a></li>
+
+										</ul>
+									</li>
+
+								</ul>
+							</li>
+							<li>
+								<a href="#contact">Vos experiences</a>
+							</li>
+						</ul>
+						<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+					</nav>
+
+					<div class="d-flex align-items-center">
+						<a class="cta-btn me-3" href="{{ path('homepage') }}#reservation">
+							Réserver maintenant
+						</a>
+						<a href="#" class="cart-icon" title="Panier">
+							<i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
+							<span class="cart-count">{{ get_reservation_count() }}</span>
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+		</header>
+
+		<main
+			class="main">
+
+			<!-- Hero Section -->
+			<section id="hero" class="hero section">
+
+				<div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+					<div class="carousel-item active">
+						<img src="assets/img/hero-carousel/hero-carousel-1.jpg" alt="">
+						<div class="container">
+							<h2>Bienvenue chez Eventus</h2>
+							<p>Chez Eventus, nous transformons l’organisation d’événements en une expérience rapide, fluide et sans stress. Grâce à notre plateforme intuitive, réservez vos prestations en quelques clics, coordonnez tous les détails en un seul endroit et profitez de votre événement en toute sérénité.</p>
+							<a href="#about" class="btn-get-started">Plus de détail</a>
+						</div>
+					</div>
+					<!-- End Carousel Item -->
+
+					<div class="carousel-item">
+						<img src="assets/img/hero-carousel/hero-carousel-2.jpg" alt="">
+						<div class="container">
+							<h2>Nos Packs</h2>
+							<p>Chez Eventus, nous avons conçu des packs sur mesure qui combinent services premium et locaux exceptionnels, le tout parfaitement organisé pour répondre à vos attentes.</p>
+							<a href="#about" class="btn-get-started">Plus de détail</a>
+						</div>
+					</div>
+					<!-- End Carousel Item -->
+
+					<div class="carousel-item">
+						<img src="assets/img/hero-carousel/hero-carousel-3.jpg" alt="">
+						<div class="container">
+							<h2>Nos Services et Locaux</h2>
+							<p>Chez Eventus, nous rassemblons pour vous matériel professionnel, équipe qualifiée et locaux premium pour des événements réussis sans effort.</p>
+							<a href="#about" class="btn-get-started">Plus de détail</a>
+						</div>
+					</div>
+					<!-- End Carousel Item -->
+
+					<a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+					</a>
+
+					<a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+						<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+					</a>
+
+					<ol class="carousel-indicators"></ol>
+
+				</div>
+
+			</section>
+			<!-- /Hero Section -->
+
+			<!-- Featured Services Section -->
+			<section id="featured-services" class="featured-services section">
+
+				<div class="container">
+
+					<div class="row gy-4">
+
+						<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-star icon"></i>
+								</div>
+								<h4>
+									<a href="" class="stretched-link">Nos Valeurs</a>
+								</h4>
+								<p>"Chez Eventus, nous croyons que chaque détail compte. Notre engagement : transformer le stress de l'organisation en une expérience fluide et mémorable, grâce à des solutions sur mesure et une équipe passionnée."</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-trophy icon"></i>
+								</div>
+								<h4>
+									<a href="" class="stretched-link">Nos Atouts</a>
+								</h4>
+								<p>"Ce qui nous distingue :</p>
+								<p>✓ Matériel haut de gamme renouvelé annuellement</p>
+								<p>✓ Réseau de 200+ lieux certifiés</p>
+								<p>✓ Équipe bilingue disponible 24/7</p>
+								<p>✓ Satisfaction client garantie (98% en 2023)"</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-handshake icon"></i>
+								</div>
+								<h4>
+									<a href="" class="stretched-link">Ils nous font confiance</a>
+								</h4>
+								<p>"Reconnus par les plus exigeants :</p>
+								<p>🏆 Prix "Meilleur Organisateur Événementiel 2024"</p>
+								<p>📸 Partenariats exclusifs (Michelin, Sony, TEDx)"</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-magic icon"></i>
+								</div>
+								<h4>
+									<a href="" class="stretched-link">L'Art de Réunir</a>
+								</h4>
+								<p>"Chez Eventus, nous transformons les espaces en expériences et les invités en souvenirs. Notre alchimie : 40% d'audace créative, 30% de précision logistique et 100% d'émotions partagées."</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Featured Services Section -->
+
+			<!-- Call To Action Section -->
+			<section id="call-to-action" class="call-to-action section accent-background">
+
+				<div class="container">
+					<div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+						<div class="col-xl-10">
+							<div class="text-center">
+								<h3>Prêt à donner vie à votre événement idéal ? Réservez dès maintenant !</h3>
+								<p>Chez Eventus, nous transformons votre vision en réalité grâce à une équipe dédiée et des solutions sur mesure. Laissez-nous vous guider étape par étape pour créer un événement unique, sans stress et mémorable.</p>
+								<a class="cta-btn" href="#appointment">Planifier mon événement</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+			<!-- /Call To Action Section -->
+
+			<!-- About Section -->
+			<section id="about" class="about section">
+
+				<!-- Section Title -->
+				<!-- Section Title -->
+					<div class="container section-title" data-aos="fade-up"> <h2>A propos de nous</h2>
+					<p>Une équipe passionnée, experte et à votre écoute - des créateurs d'émotions qui transforment vos idées en expériences inoubliables.</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container">
+					<div class="row gy-4">
+						<div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+							<img src="assets/img/about.png" class="img-fluid" alt="Notre équipe en action">
+							<a href="https://www.youtube.com/watch?v=u_qFlTu7HTw" class="glightbox pulsating-play-btn"></a>
+						</div>
+						<div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+							<h3>Notre philosophie : l'excellence événementielle sur mesure</h3>
+							<p class="fst-italic">
+								Chez Eventus, nous croyons que chaque événement doit être une expérience unique, 
+																																																																																																																																																																																																																																																																																																																																																																                parfaitement adaptée à vos aspirations et valeurs.
+							</p>
+							<ul>
+								<li>
+									<i class="bi bi-check2-all"></i>
+									<span>
+										<strong>Approche sur-mesure :</strong>
+										Audit complet de vos besoins et conception 100% personnalisée</span>
+								</li>
+								<li>
+									<i class="bi bi-check2-all"></i>
+									<span>
+										<strong>Réseau premium :</strong>
+										Accès à +200 lieux exclusifs et partenaires triés sur le volet</span>
+								</li>
+								<li>
+									<i class="bi bi-check2-all"></i>
+									<span>
+										<strong>Gestion stress-free :</strong>
+										Un chef de projet dédié gère intégralement votre événement de A à Z</span>
+								</li>
+							</ul>
+							<p>
+								Fondé en 2015, notre collectif rassemble des experts en organisation, 
+																																																																																																																																																																																																																																																																																																																																																																                des scénographes créatifs et des logisticiens méticuleux. 
+																																																																																																																																																																																																																																																																																																																																																																                Nous avons orchestré plus de 1,200 événements satisfaisants 
+																																																																																																																																																																																																																																																																																																																																																																                avec un taux de recommandation de 98%.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /About Section -->
+
+			<!-- Stats Section -->
+			<section id="stats" class="stats section">
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+					<div
+						class="row gy-4">
+						<!-- Événements réalisés -->
+						<div class="col-lg-3 col-md-6">
+							<div class="stats-item d-flex align-items-center w-100 h-100">
+								<i class="fas fa-calendar-check flex-shrink-0"></i>
+								<div>
+									<span data-purecounter-start="0" data-purecounter-end="1200" data-purecounter-duration="1" class="purecounter"></span>
+									<p>Événements organisés</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Stats Item -->
+
+						<!-- Clients satisfaits -->
+						<div class="col-lg-3 col-md-6">
+							<div class="stats-item d-flex align-items-center w-100 h-100">
+								<i class="fas fa-smile-beam flex-shrink-0"></i>
+								<div>
+									<span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="1" class="purecounter"></span>
+									<p>% Satisfaction client</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Stats Item -->
+
+						<!-- Lieux partenaires -->
+						<div class="col-lg-3 col-md-6">
+							<div class="stats-item d-flex align-items-center w-100 h-100">
+								<i class="fas fa-map-marked-alt flex-shrink-0"></i>
+								<div>
+									<span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
+									<p>Lieux exclusifs</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Stats Item -->
+
+						<!-- Équipe experte -->
+						<div class="col-lg-3 col-md-6">
+							<div class="stats-item d-flex align-items-center w-100 h-100">
+								<i class="fas fa-users flex-shrink-0"></i>
+								<div>
+									<span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1" class="purecounter"></span>
+									<p>Experts dédiés</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Stats Item -->
+					</div>
+				</div>
+			</section>
+			<!-- /Stats Section -->
+
+			<!-- Features Section -->
+			<section id="features" class="features section">
+				<div class="container">
+					<div
+						class="row justify-content-around gy-4">
+						<!-- Image illustrative -->
+						<div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100">
+							<img src="assets/img/services.jpg" alt="Notre équipe en pleine organisation d'événement" class="img-fluid rounded">
+						</div>
+
+						<!-- Contenu textuel -->
+						<div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+							<h3>Notre méthodologie pour des événements réussis</h3>
+							<p>Chez Eventus, nous combinons créativité et rigueur organisationnelle pour transformer vos idées en expériences mémorables, tout en vous épargnant le stress logistique.</p>
+
+							<!-- Box 1 : Conseil personnalisé -->
+							<div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+								<i class="fa-solid fa-lightbulb flex-shrink-0"></i>
+								<div>
+									<h4>
+										<a href="#" class="stretched-link">Conseil sur mesure</a>
+									</h4>
+									<p>Audit complet de vos besoins et conception d'un concept unique adapté à votre identité et budget.</p>
+								</div>
+							</div>
+
+							<!-- Box 2 : Logistique clé en main -->
+							<div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+								<i class="fa-solid fa-clipboard-check flex-shrink-0"></i>
+								<div>
+									<h4>
+										<a href="#" class="stretched-link">Logistique intégrale</a>
+									</h4>
+									<p>Gestion de tous les aspects techniques : lieux, matériel, prestataires, autorisations et plans de secours.</p>
+								</div>
+							</div>
+
+							<!-- Box 3 : Technologies innovantes -->
+							<div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="500">
+								<i class="fa-solid fa-rocket flex-shrink-0"></i>
+								<div>
+									<h4>
+										<a href="#" class="stretched-link">Solutions innovantes</a>
+									</h4>
+									<p>Outils digitaux et technologies immersives (réalité augmentée, applications sur mesure) pour impressionner vos invités.</p>
+								</div>
+							</div>
+
+							<!-- Box 4 : Suivi personnalisé -->
+							<div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="600">
+								<i class="fa-solid fa-headset flex-shrink-0"></i>
+								<div>
+									<h4>
+										<a href="#" class="stretched-link">Accompagnement 360°</a>
+									</h4>
+									<p>Un chef de projet dédié disponible jusqu'au dernier invité pour garantir un déroulement parfait.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /Features Section -->
+
+			<!-- Services Section -->
+			<section
+				id="services" class="services section">
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Nos Services Événementiels</h2>
+					<p>Des solutions clés en main pour des événements mémorables, sans le stress de l'organisation</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container">
+					<div
+						class="row gy-4">
+						<!-- Service 1 : Organisation complète -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-calendar-check"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Organisation Intégrale</h3>
+								</a>
+								<p>Gestion de A à Z de votre événement : conception, logistique, coordination des prestataires et suivi opérationnel.</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<!-- Service 2 : Location matériel -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fa-boxes"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Location Matériel Premium</h3>
+								</a>
+								<p>Technologie événementielle haut de gamme : sonorisation, éclairage, écrans et outils interactifs.</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<!-- Service 3 : Équipe technique -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-users-cog"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Staff Professionnel</h3>
+								</a>
+								<p>Une équipe dédiée : hôtes(ses), techniciens, photographes et chefs de projet expérimentés.</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<!-- Service 4 : Lieux exclusifs -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-building"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Réseau de Lieux Exclusifs</h3>
+								</a>
+								<p>Accès à plus de 200 espaces uniques, des salles de conférence aux sites patrimoniaux exceptionnels.</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<!-- Service 5 : Événements hybrides -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-laptop-house"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Solutions Hybrides</h3>
+								</a>
+								<p>Plateforme intégrée pour événements physiques et virtuels avec interactivité avancée.</p>
+							</div>
+						</div>
+						<!-- End Service Item -->
+
+						<!-- Service 6 : Actualités/Événements -->
+						<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+							<div class="service-item position-relative">
+								<div class="icon">
+									<i class="fas fa-newspaper"></i>
+								</div>
+								<a href="#" class="stretched-link">
+									<h3>Actualités & Inspirations</h3>
+								</a>
+								<p>Découvrez nos dernières réalisations et tendances événementielles à ne pas manquer.</p>
+								<div class="news-preview mt-2">
+									<small>
+										<i class="fas fa-circle me-1" style="color:#ffc107; font-size:6px;"></i>
+										Nouveau : Espaces éco-responsables</small><br>
+									<small>
+										<i class="fas fa-circle me-1" style="color:#ffc107; font-size:6px;"></i>
+										Tendance 2024 : Expériences immersives</small>
+								</div>
+							</div>
+						</div>
+						<!-- End Service Item -->
+					</div>
+				</div>
+			</section>
+			<!-- /Services Section -->
+			<section
+				id="reservation" class="reservation section light-background">
+
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>RÉSERVER MAINTENANT</h2>
+					<p>Choisissez parmi nos solutions clés en main pour votre événement</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+					<div
+						class="reservation-options text-center">
+						<!-- Option Packs -->
+						<div class="reservation-card pack-option" data-type="pack">
+							<div class="card-icon">
+								<i class="fas fa-box-open"></i>
+							</div>
+							<h3>Packs Tout-Inclus</h3>
+							<p>Solutions complètes pour votre événement
+							</p>
+							<button class="btn-select-type" onclick="window.location.href='{{ path('homepage') }}'">
+								Réserver les packs
+								<i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+
+						<!-- Option Services -->
+						<div class="reservation-card service-option" data-type="service">
+							<div class="card-icon">
+								<i class="fas fa-concierge-bell"></i>
+							</div>
+							<h3>
+								Nos Services
+							</h3>
+							<p>Choisissez les services dont vous avez besoin</p>
+							<button class="btn-select-type" onclick="window.location.href='{{ path('homepage') }}'">
+								Réserver les services
+								<i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+
+						<!-- Option Locaux -->
+						<div class="reservation-card local-option" data-type="local">
+							<div class="card-icon">
+								<i class="fas fa-building"></i>
+							</div>
+							<h3>Location d'Espaces</h3>
+							<p>Nos lieux exclusifs pour votre événement</p>
+							<button class="btn-select-type" onclick="window.location.href='{{ path('homepage') }}'">
+								Réserver les espaces
+								<i class="fas fa-arrow-right"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<style>
+				.reservation-options {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+					gap: 30px;
+				}
+
+				.reservation-card {
+					background: white;
+					padding: 30px;
+					border-radius: 10px;
+					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+					transition: transform 0.3s, box-shadow 0.3s;
+				}
+
+				.reservation-card:hover {
+					transform: translateY(-10px);
+					box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+				}
+
+				.card-icon {
+					font-size: 3rem;
+					color: rgb(244, 96, 11);
+					margin-bottom: 20px;
+				}
+
+				.btn-select-type {
+					background: rgb(244, 96, 11);
+					color: #000;
+					border: none;
+					padding: 12px 25px;
+					border-radius: 50px;
+					font-weight: 600;
+					margin-top: 20px;
+					cursor: pointer;
+					transition: all 0.3s;
+				}
+
+				.btn-select-type:hover {
+					background: rgb(244, 96, 11);
+					transform: translateX(5px);
+				}
+			</style>
+
+			<script>
+				// Optionnel : Animation au survol
+document.querySelectorAll('.reservation-card').forEach(card => {
+card.addEventListener('mouseenter', function () {
+this.querySelector('.card-icon').style.transform = 'scale(1.1)';
+});
+card.addEventListener('mouseleave', function () {
+this.querySelector('.card-icon').style.transform = 'scale(1)';
+});
+});
+			</script>
+			<!-- /Appointment Section -->
+
+			<!-- Tabs Section -->
+			<section
+				id="services" class="services-tabs section">
+
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Nos Solutions Événementielles</h2>
+					<p>Découvrez nos services clés pour des événements réussis</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+					<div class="row">
+						<div class="col-lg-3">
+							<ul class="nav nav-tabs flex-column">
+								<li class="nav-item">
+									<a class="nav-link active show" data-bs-toggle="tab" href="#tab-packs">
+										<i class="fas fa-box-open me-2"></i>Packs Tout-Inclus
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-bs-toggle="tab" href="#tab-locations">
+										<i class="fas fa-map-marked-alt me-2"></i>Locaux Premium
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-bs-toggle="tab" href="#tab-equipment">
+										<i class="fas fa-film"></i>Matériel Événementiel
+									</a>
+								</li>
+
+							</ul>
+						</div>
+
+						<div class="col-lg-9 mt-4 mt-lg-0">
+							<div
+								class="tab-content">
+								<!-- Packs Tout-Inclus -->
+								<div class="tab-pane active show" id="tab-packs">
+									<div class="row">
+										<div class="col-lg-8 details order-2 order-lg-1">
+											<h3>Packs Clé en Main</h3>
+											<p class="fst-italic">La solution parfaite pour ceux qui veulent une organisation sans tracas</p>
+											<ul class="feature-list">
+												<li>
+													<i class="fas fa-check-circle text-warning"></i>
+													Pack Silver - Événements simples (50 personnes max)</li>
+												<li>
+													<i class="fas fa-check-circle text-warning"></i>
+													Pack Gold - Réceptions premium avec traiteur</li>
+												<li>
+													<i class="fas fa-check-circle text-warning"></i>
+													Pack Platinum - Événements sur mesure avec coordinateur dédié</li>
+											</ul>
+											<a href="#reservation" class="cta-btn">Demander un devis</a>
+										</div>
+										<div class="col-lg-4 text-center order-1 order-lg-2">
+											<img src="assets/img/departments-3.jpg" alt="Packs événementiels" class="img-fluid rounded">
+										</div>
+									</div>
+								</div>
+
+								<!-- Locaux Premium -->
+								<div class="tab-pane" id="tab-locations">
+									<div class="row">
+										<div class="col-lg-8 details order-2 order-lg-1">
+											<h3>Nos Espaces Exclusifs</h3>
+											<p class="fst-italic">Plus de 200 lieux sélectionnés pour leur caractère unique</p>
+											<div class="row">
+												<div class="col-md-6">
+													<p>
+														<strong>
+															<i class="fas fa-building me-2"></i>Salles de réception</strong><br>
+														Capacité: 50-500 personnes</p>
+												</div>
+												<div class="col-md-6">
+													<p>
+														<strong>
+															<i class="fas fa-umbrella-beach me-2"></i>Lieux insolites</strong><br>
+														Rooftops, châteaux, musées...</p>
+												</div>
+											</div>
+											<p>Nos espaces répondent aux normes de sécurité les plus strictes et sont adaptés à tous types d'événements.</p>
+										</div>
+										<div class="col-lg-4 text-center order-1 order-lg-2">
+											<img src="assets/img/departments-3.jpg" alt="Locaux événementiels" class="img-fluid rounded">
+										</div>
+									</div>
+								</div>
+
+								<!-- Matériel Événementiel -->
+								<div class="tab-pane" id="tab-equipment">
+									<div class="row">
+										<div class="col-lg-8 details order-2 order-lg-1">
+											<h3>Technologie Événementielle</h3>
+											<p class="fst-italic">Du matériel haut de gamme renouvelé chaque année</p>
+											<div class="equipment-grid">
+												<div class="equipment-item">
+													<i class="fas fa-volume-up"></i>
+													<span>Sonorisation HD</span>
+												</div>
+												<div class="equipment-item">
+													<i class="fas fa-lightbulb"></i>
+													<span>Éclairage intelligent</span>
+												</div>
+												<div class="equipment-item">
+													<i class="fas fa-tv"></i>
+													<span>Écrans 4K</span>
+												</div>
+												<div class="equipment-item">
+													<i class="fas fa-wifi"></i>
+													<span>Réseau événementiel</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 text-center order-1 order-lg-2">
+											<img src="assets/img/departments-3.jpg" alt="Matériel technologique" class="img-fluid rounded">
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<style>
+				.services-tabs .nav-tabs {
+					border-bottom: none;
+				}
+				.services-tabs .nav-link {
+					border: none;
+					padding: 12px 15px;
+					color: rgba(244, 90, 7, 0.66);
+					border-radius: 0;
+					border-left: 3px solid transparent;
+					transition: all 0.3s;
+				}
+				.services-tabs .nav-link:hover {
+					color: #000;
+					background: rgba(255, 193, 7, 0.1);
+				}
+				.services-tabs .nav-link.active {
+					background: rgba(255, 193, 7, 0.1);
+					color: #000;
+					border-left: 3px solidrgb(244, 96, 11);
+					font-weight: 600;
+				}
+				.feature-list {
+					list-style: none;
+					padding-left: 0;
+				}
+				.feature-list li {
+					margin-bottom: 10px;
+				}
+				.equipment-grid {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 15px;
+				}
+				.equipment-item {
+					text-align: center;
+					padding: 15px;
+					background: rgba(255, 193, 7, 0.1);
+					border-radius: 5px;
+				}
+				.equipment-item i {
+					font-size: 1.5rem;
+					color: rgb(244, 96, 11);
+					display: block;
+					margin-bottom: 5px;
+				}
+			</style>
+			<!-- /Tabs Section -->
+
+			<!-- Testimonials Section -->
+			<section
+				id="testimonials" class="testimonials section">
+
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Témoignages</h2>
+					<p>Découvrez ce que nos clients satisfaits disent de nos services</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+
+					<div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+						<script type="application/json" class="swiper-config">
+							{
+																																																																																																																																																																	                    "loop": true,
+																																																																																																																																																																	                    "speed": 600,
+																																																																																																																																																																	                    "autoplay": {
+																																																																																																																																																																	                        "delay": 5000
+																																																																																																																																																																	                    },
+																																																																																																																																																																	                    "slidesPerView": "auto",
+																																																																																																																																																																	                    "pagination": {
+																																																																																																																																																																	                        "el": ".swiper-pagination",
+																																																																																																																																																																	                        "type": "bullets",
+																																																																																																																																																																	                        "clickable": true
+																																																																																																																																																																	                    },
+																																																																																																																																																																	                    "breakpoints": {
+																																																																																																																																																																	                        "320": {
+																																																																																																																																																																	                            "slidesPerView": 1,
+																																																																																																																																																																	                            "spaceBetween": 40
+																																																																																																																																																																	                        },
+																																																																																																																																																																	                        "1200": {
+																																																																																																																																																																	                            "slidesPerView": 3,
+																																																																																																																																																																	                            "spaceBetween": 20
+																																																																																																																																																																	                        }
+																																																																																																																																																																	                    }
+																																																																																																																																																																	                }
+						</script>
+						<div class="swiper-wrapper">
+
+							<div class="swiper-slide">
+								<div class="testimonial-item">
+									<p>
+										<i class="bi bi-quote quote-icon-left"></i>
+										<span>Travailler avec cette équipe a été une expérience exceptionnelle. Leur professionnalisme et leur créativité ont dépassé toutes mes attentes.</span>
+										<i class="bi bi-quote quote-icon-right"></i>
+									</p>
+									<img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+									<h3>Youssef Benali</h3>
+									<h4>Directeur Marketing</h4>
+								</div>
+							</div>
+							<!-- End testimonial item -->
+
+							<div class="swiper-slide">
+								<div class="testimonial-item">
+									<p>
+										<i class="bi bi-quote quote-icon-left"></i>
+										<span>Un service client hors pair et des solutions sur mesure. Je recommande vivement cette agence pour son sérieux et son expertise.</span>
+										<i class="bi bi-quote quote-icon-right"></i>
+									</p>
+									<img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+									<h3>Salma Cherif</h3>
+									<h4>Entrepreneure</h4>
+								</div>
+							</div>
+							<!-- End testimonial item -->
+
+							<div class="swiper-slide">
+								<div class="testimonial-item">
+									<p>
+										<i class="bi bi-quote quote-icon-left"></i>
+										<span>Le résultat final a parfaitement répondu à nos besoins. Une équipe réactive et à l'écoute qui sait conseiller ses clients.</span>
+										<i class="bi bi-quote quote-icon-right"></i>
+									</p>
+									<img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+									<h3>Emna Hammami</h3>
+									<h4>Responsable Communication</h4>
+								</div>
+							</div>
+							<!-- End testimonial item -->
+
+							<div class="swiper-slide">
+								<div class="testimonial-item">
+									<p>
+										<i class="bi bi-quote quote-icon-left"></i>
+										<span>Un accompagnement de qualité du début à la fin. Des professionnels qui comprennent rapidement les besoins de leurs clients.</span>
+										<i class="bi bi-quote quote-icon-right"></i>
+									</p>
+									<img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+									<h3>Firas Toumi</h3>
+									<h4>Chef de Projet</h4>
+								</div>
+							</div>
+							<!-- End testimonial item -->
+
+							<div class="swiper-slide">
+								<div class="testimonial-item">
+									<p>
+										<i class="bi bi-quote quote-icon-left"></i>
+										<span>Des idées innovantes et une exécution parfaite. Notre collaboration a été très fructueuse et nous comptons bien la renouveler.</span>
+										<i class="bi bi-quote quote-icon-right"></i>
+									</p>
+									<img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+									<h3>Karim Zayani</h3>
+									<h4>Directeur Artistique</h4>
+								</div>
+							</div>
+							<!-- End testimonial item -->
+
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Testimonials Section -->
+
+			<!-- Doctors Section -->
+			<!-- Team Section -->
+				<section
+				id="team" class="team section light-background"> <!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Notre Équipe</h2>
+					<p>Découvrez notre équipe talentueuse de développeurs passionnés</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container">
+
+					<div class="row gy-4">
+
+						<div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+							<div class="team-member">
+								<div class="member-img">
+									<img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="Kotti Emna">
+									<div class="social">
+										<a href="">
+											<i class="bi bi-twitter-x"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-facebook"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-instagram"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-linkedin"></i>
+										</a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Kotti Emna</h4>
+									<span>Développeuse Full-Stack</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Team Member -->
+
+						<div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+							<div class="team-member">
+								<div class="member-img">
+									<img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="Romdhani Yassine">
+									<div class="social">
+										<a href="">
+											<i class="bi bi-twitter-x"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-facebook"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-instagram"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-linkedin"></i>
+										</a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Romdhani Yassine</h4>
+									<span>Développeur Front-End</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Team Member -->
+
+						<div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+							<div class="team-member">
+								<div class="member-img">
+									<img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="Ardhaoui Rima">
+									<div class="social">
+										<a href="">
+											<i class="bi bi-twitter-x"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-facebook"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-instagram"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-linkedin"></i>
+										</a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Ardhaoui Rima</h4>
+									<span>Développeuse Back-End</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Team Member -->
+
+						<div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+							<div class="team-member">
+								<div class="member-img">
+									<img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="Essid Yassine">
+									<div class="social">
+										<a href="">
+											<i class="bi bi-twitter-x"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-facebook"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-instagram"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-linkedin"></i>
+										</a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Essid Yassine</h4>
+									<span>Développeur Mobile</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Team Member -->
+
+						<div class="col-lg-3 col-md-6 d-flex align-items-stretch mx-auto" data-aos="fade-up" data-aos-delay="500">
+							<div class="team-member">
+								<div class="member-img">
+									<img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="Bouhajeb Mariem">
+									<div class="social">
+										<a href="">
+											<i class="bi bi-twitter-x"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-facebook"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-instagram"></i>
+										</a>
+										<a href="">
+											<i class="bi bi-linkedin"></i>
+										</a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Bouhajeb Mariem</h4>
+									<span>UI/UX Designer</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Team Member -->
+
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Team Section -->
+			<!-- /Doctors Section -->
+
+			<!-- Gallery Section -->
+			<!-- Gallery Section -->
+				<section
+				id="gallery" class="gallery section"> <!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Notre Environnement</h2>
+					<p>Découvrez notre espace de travail et nos moments d'équipe</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+
+					<div class="swiper init-swiper">
+						<script type="application/json" class="swiper-config">
+							{
+																																																																																																																																					                    "loop": true,
+																																																																																																																																					                    "speed": 600,
+																																																																																																																																					                    "autoplay": {
+																																																																																																																																					                        "delay": 5000
+																																																																																																																																					                    },
+																																																																																																																																					                    "slidesPerView": "auto",
+																																																																																																																																					                    "centeredSlides": true,
+																																																																																																																																					                    "pagination": {
+																																																																																																																																					                        "el": ".swiper-pagination",
+																																																																																																																																					                        "type": "bullets",
+																																																																																																																																					                        "clickable": true
+																																																																																																																																					                    },
+																																																																																																																																					                    "breakpoints": {
+																																																																																																																																					                        "320": {
+																																																																																																																																					                            "slidesPerView": 1,
+																																																																																																																																					                            "spaceBetween": 0
+																																																																																																																																					                        },
+																																																																																																																																					                        "768": {
+																																																																																																																																					                            "slidesPerView": 3,
+																																																																																																																																					                            "spaceBetween": 20
+																																																																																																																																					                        },
+																																																																																																																																					                        "1200": {
+																																																																																																																																					                            "slidesPerView": 5,
+																																																																																																																																					                            "spaceBetween": 20
+																																																																																																																																					                        }
+																																																																																																																																					                    }
+																																																																																																																																					                }
+						</script>
+						<div class="swiper-wrapper align-items-center">
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-team-1.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Équipe en réunion de travail">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-team-2.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Session de codage collaboratif">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-space-1.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Notre espace de travail moderne">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-presentation.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Présentation d'un projet">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-event.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Participation à un événement tech">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-screens.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Écrans de développement">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-discussion.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Discussion technique">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/dev-celebration.jpg">
+									<img src="assets/img/gallery/dev-team-1.jpg" class="img-fluid" alt="Célébration d'un projet réussi">
+								</a>
+							</div>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Gallery Section -->
+
+
+			<!-- Faq Section -->
+			<section
+				id="faq" class="faq section light-background">
+
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Questions Fréquentes</h2>
+					<p>Trouvez des réponses à vos questions sur l'organisation d'événements avec notre plateforme</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="container">
+
+					<div class="row justify-content-center">
+
+						<div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+							<div class="faq-container">
+
+								<div class="faq-item">
+									<h3>Comment réserver un pack complet pour mon événement ?</h3>
+									<div class="faq-content">
+										<p>Notre plateforme vous permet de composer votre pack personnalisé en 3 étapes :
+											<br>1. Sélectionnez votre lieu
+											<br>2. Choisissez vos services (traiteur, animation, décoration...)
+											<br>3. Validez votre réservation en ligne
+											<br>Vous pouvez sauvegarder vos préférences et modifier votre sélection à tout moment.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+								<div class="faq-item">
+									<h3>Quels types de locaux puis-je réserver ?</h3>
+									<div class="faq-content">
+										<p>Nous proposons divers espaces adaptés à tous types d'événements :
+											<br>- Salles de réception et salles des fêtes
+											<br>- Espaces corporate pour séminaires
+											<br>- Lofts et espaces atypiques
+											<br>- Terrains extérieurs pour événements en plein air
+											<br>Tous nos lieux sont vérifiés et répondent aux normes de sécurité.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+								<div class="faq-item">
+									<h3>Puis-je modifier ma réservation après paiement ?</h3>
+									<div class="faq-content">
+										<p>Oui, sous certaines conditions :
+											<br>- Modifications possibles jusqu'à 72h avant l'événement
+											<br>- Changement de lieu sous réserve de disponibilité
+											<br>- Ajout de services possible à tout moment
+											<br>Les annulations sont soumises à nos conditions générales de vente.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+								<div class="faq-item">
+									<h3>Comment fonctionne le paiement des services ?</h3>
+									<div class="faq-content">
+										<p>Plusieurs options s'offrent à vous :
+											<br>- Paiement sécurisé en ligne (CB, PayPal, virement)
+											<br>- Paiement en 2 fois (30% à la réservation, 70% 15 jours avant l'événement)
+											<br>- Devis personnalisé pour les professionnels
+											<br>Tous les prix affichés sont TTC et incluent les frais de service.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+								<div class="faq-item">
+									<h3>Proposez-vous un accompagnement personnalisé ?</h3>
+									<div class="faq-content">
+										<p>Absolument ! Nos conseillers événementiels peuvent :
+											<br>- Vous guider dans le choix des prestations
+											<br>- Créer un devis sur mesure
+											<br>- Coordonner tous vos prestataires
+											<br>- Vous assister le jour J
+											<br>Ce service optionnel est disponible pour tous les budgets.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+								<div class="faq-item">
+									<h3>Que se passe-t-il en cas d'annulation par le prestataire ?</h3>
+									<div class="faq-content">
+										<p>Dans ce cas rare, nous nous engageons à :
+											<br>1. Vous proposer une alternative équivalente
+											<br>2. Vous rembourser intégralement si aucune solution ne vous convient
+											<br>3. Vous offrir un bon d'achat de 10% pour un futur événement
+											<br>Notre équipe reste à votre disposition 24/7 en cas de problème.</p>
+									</div>
+									<i class="faq-toggle bi bi-chevron-right"></i>
+								</div>
+								<!-- End Faq item-->
+
+							</div>
+
+						</div>
+						<!-- End Faq Column-->
+
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Faq Section -->
+
+			<!-- Contact Section -->
+			<section
+				id="contact" class="contact section">
+
+				<!-- Section Title -->
+				<div class="container section-title" data-aos="fade-up">
+					<h2>Contactez-nous</h2>
+					<p>Nous sommes à votre écoute pour organiser ensemble votre événement parfait</p>
+				</div>
+				<!-- End Section Title -->
+
+				<div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+					<iframe style="border:0; width: 100%; height: 370px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.755653621456!2d10.164215315294913!3d36.86246497993572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb7454c6ed51%3A0x683b7ab5668e4f9a!2sAriana%2C%20Tunisie!5e0!3m2!1sfr!2stn!4v1659371234567!5m2!1sfr!2stn" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+				<!-- End Google Maps -->
+
+				<div class="container" data-aos="fade-up" data-aos-delay="100">
+
+					<div class="row gy-4">
+						<div class="col-lg-6">
+							<div class="row gy-4">
+
+								<div class="col-lg-12">
+									<div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+										<i class="bi bi-geo-alt"></i>
+										<h3>Adresse</h3>
+										<p>Centre Urbain Nord, Ariana 2080, Tunisie</p>
+									</div>
+								</div>
+								<!-- End Info Item -->
+
+								<div class="col-md-6">
+									<div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+										<i class="bi bi-telephone"></i>
+										<h3>Appelez-nous</h3>
+										<p>+216 70 000 000</p>
+									</div>
+								</div>
+								<!-- End Info Item -->
+
+								<div class="col-md-6">
+									<div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+										<i class="bi bi-envelope"></i>
+										<h3>Email</h3>
+										<p>contact@eventus-ariana.tn</p>
+									</div>
+								</div>
+								<!-- End Info Item -->
+
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+								<div class="row gy-4">
+
+									<div class="col-md-6">
+										<input type="text" name="name" class="form-control" placeholder="Votre Nom" required>
+									</div>
+
+									<div class="col-md-6">
+										<input type="email" class="form-control" name="email" placeholder="Votre Email" required>
+									</div>
+
+									<div class="col-md-12">
+										<input type="text" class="form-control" name="subject" placeholder="Sujet" required>
+									</div>
+
+									<div class="col-md-12">
+										<textarea class="form-control" name="message" rows="4" placeholder="Votre Message" required></textarea>
+									</div>
+
+									<div class="col-md-12 text-center">
+										<div class="loading">Chargement</div>
+										<div class="error-message"></div>
+										<div class="sent-message">Votre message a été envoyé. Merci!</div>
+
+										<button type="submit">Envoyer</button>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+			<!-- /Contact Section -->
+
+		</main>
+
+		<footer id="footer" class="footer light-background">
+
+			<div class="container footer-top">
+				<div class="row gy-4">
+					<div class="col-lg-4 col-md-6 footer-about">
+						<a href="index.html" class="logo d-flex align-items-center">
+							<span class="sitename">Medicio</span>
+						</a>
+						<div class="footer-contact pt-3">
+							<p>Equipe eventus</p>
+							<p>tunisie, ariana 535022</p>
+							<p class="mt-3">
+								<strong>Phone:</strong>
+								<span>+216 99852147</span>
+							</p>
+							<p>
+								<strong>Email:</strong>
+								<span>info@eventus.com</span>
+							</p>
+						</div>
+						<div class="social-links d-flex mt-4">
+							<a href="">
+								<i class="bi bi-twitter-x"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-facebook"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-instagram"></i>
+							</a>
+							<a href="">
+								<i class="bi bi-linkedin"></i>
+							</a>
+						</div>
+					</div>
+
+					<div class="col-lg-2 col-md-3 footer-links">
+						<h4>Dérigez-vous</h4>
+						<ul>
+							<li><a href="#">Acceuil</a></li>
+							<li><a href="#">A propos de nous</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">Vos experiences</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-2 col-md-3 footer-links">
+						<h4>Catalogues</h4>
+						<ul>
+							<li><a href="#">Pack</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">LoCaux</a></li>
+
+						</ul>
+					</div>
+
+
+					<©Copyright</span </div> </div> <div class="container copyright text-center mt-4"> <p> <span>>
+						<strong class="px-1 sitename">Eventus</strong>
+						<span>All Rights Reserved</span>
+					</p>
+					<div class="credits">
+						<!-- All the links in the footer should remain intact. -->
+						<!-- You can delete the links only if you've purchased the pro version. -->
+						<!-- Licensing information: https://bootstrapmade.com/license/ -->
+						<!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+						Designed by
+							<a>
+						Equipe Eventus
+						</a>
+						Distributed by
+							<a>
+						Eventus
+					</div>
+				</div>
+
+				</footer>
+
+				<!-- Scroll Top -->
+					<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-up-short"></i>
+				</a>
+
+				<!-- Preloader -->
+				<div id="preloader"></div>
+
+				<!-- Vendor JS Files -->
+				<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+				<script src="assets/vendor/php-email-form/validate.js"></script>
+				<script src="assets/vendor/aos/aos.js"></script>
+				<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+				<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+				<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+				<!-- Main JS File -->
+				<script src="assets/js/main.js"></script>
+			</body>
+		</body>
+	</body>
 </html>

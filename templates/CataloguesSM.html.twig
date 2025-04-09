@@ -1,0 +1,55 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Catalogue des Services - EVENTUS
+{% endblock %}
+
+{% block content %}
+	<section class="container py-5">
+		<h1 class="text-center mb-5">Nos Services Disponibles</h1>
+
+		<div
+			class="row">
+			<!-- Liste des services -->
+			<div class="col-12">
+				<div class="row">
+					{% for service in services %}
+						<div class="col-lg-4 col-md-6 mb-4">
+							<div class="card h-100 shadow-sm">
+								{% if service.imageUrl %}
+									<img src="{{ asset('uploads/' ~ service.imageUrl) }}" class="card-img-top" alt="{{ service.nomService }}" style="height: 200px; object-fit: cover;">
+								{% endif %}
+
+								<div class="card-body">
+									<h3 class="h5">{{ service.nomService }}</h3>
+									<p class="text-orange fw-bold">{{ service.prix }}
+										DT</p>
+									<p>{{ service.description|length > 100 ? service.description|slice(0, 100) ~ '...' : service.description }}</p>
+
+									<div class="d-flex align-items-center mb-3">
+										<span class="badge bg-{{ service.typeService == 'Matériel' ? 'info' : 'warning' }} me-3">
+											{{ service.typeService }}
+										</span>
+										<span class="{{ service.disponibilite > 0 ? 'text-success' : 'text-danger' }}">
+											<i class="bi {{ service.disponibilite > 0 ? 'bi-check-circle-fill' : 'bi-x-circle-fill' }}"></i>
+											{{ service.disponibilite > 0 ? service.disponibilite ~ ' disponibles' : 'Non disponible' }}
+										</span>
+									</div>
+								</div>
+
+								<a href="{{ path('service_detail', {'idService': service.idService}) }}" class="btn btn-outline-orange w-100">
+									Voir détails
+								</a>
+							</div>
+						</div>
+					{% else %}
+						<div class="col-12">
+							<div class="alert alert-info">
+								Aucun service disponible pour le moment.
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
