@@ -1,0 +1,266 @@
+{% extends 'front/base1.html.twig' %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('cattagPack') }}" class="text-decoration-none">Catalogue</a></li>
+            <li class="breadcrumb-item active">{{ pack.nom }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- Galerie d'images -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm overflow-hidden">
+                {% if pack.photo %}
+                    <img src="{{ asset('uploads/packs/' ~ pack.photo) }}" 
+                         class="card-img-top" 
+                         alt="{{ pack.nom }}" 
+                         style="height: 500px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 500px;">
+                        <i class="fas fa-image fa-4x text-muted"></i>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Informations principales -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <h1 class="h3 mb-2">{{ pack.nom }}</h1>
+                            <span class="badge bg-primary">{{ pack.type }}</span>
+                        </div>
+                        <div class="text-end">
+                            <div class="h2 mb-0 text-primary">{{ pack.prix }} DT</div>
+                            <small class="text-muted">Prix par événement</small>
+                        </div>
+                    </div>
+
+                    {% if pack.description %}
+                        <div class="mb-4">
+                            <h5 class="border-bottom pb-2">Description</h5>
+                            <p class="text-muted">{{ pack.description }}</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <h5 class="border-bottom pb-2">Détails</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-light rounded p-2 me-3">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Lieu</small>
+                                        {% if pack.lieu %}
+                                            <strong>{{ pack.lieu.adresse }}</strong>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-light rounded p-2 me-3">
+                                        <i class="fas fa-users text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Capacité</small>
+                                        <strong>{{ pack.nbreInvitesMax }} invités maximum</strong>
+                                    </div>
+                                </div>
+                            </li>
+                            {% if pack.budgetPrevu %}
+                                <li class="mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-light rounded p-2 me-3">
+                                            <i class="fas fa-wallet text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted d-block">Budget prévu</small>
+                                            <strong>{{ pack.budgetPrevu }} DT</strong>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                            {% if pack.dateEvenement %}
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-light rounded p-2 me-3">
+                                            <i class="fas fa-calendar text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted d-block">Date de l'événement</small>
+                                            <strong>{{ pack.dateEvenement|date('d/m/Y') }}</strong>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{{ path('cattagPack') }}" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-arrow-left me-2"></i>Retour au catalogue
+                        </a>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-calendar-check me-2"></i>Réserver
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Description -->
+    {% if pack.description %}
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-star text-warning fa-3x mb-3"></i>
+                                <h2 class="h3 mb-3">À propos de ce pack</h2>
+                                <div class="divider mx-auto"></div>
+                            </div>
+                            <div class="description-content">
+                                {{ pack.description|nl2br }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+   <!-- Section Services -->
+{% if pack.services|length > 0 %}
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <i class="fas fa-gift text-primary fa-3x mb-3"></i>
+                <h2 class="h3 mb-3">Services Inclus</h2>
+                <p class="text-muted">Découvrez tous les services qui rendront votre événement unique</p>
+                <div class="divider mx-auto"></div>
+            </div>
+        </div>
+        {# Si le nombre de services est inférieur ou égal à 2, centrer les cartes #}
+        <div class="row g-4 {% if pack.services|length <= 2 %}justify-content-center{% endif %}">
+            {% for service in pack.services %}
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 service-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                {% if service.imageUrl %}
+                                    <img src="{{ asset('uploads/packs/' ~ service.imageUrl) }}" 
+                                         class="rounded me-3" 
+                                         alt="{{ service.nomService }}"
+                                         style="width: 60px; height: 60px; object-fit: cover;">
+                                {% else %}
+                                    <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" 
+                                         style="width: 60px; height: 60px;">
+                                        <i class="fas fa-camera text-muted"></i>
+                                    </div>
+                                {% endif %}
+                                <div>
+                                    <h5 class="mb-1">{{ service.nomService }}</h5>
+                                    <p class="text-muted small mb-0">{{ service.description|slice(0, 50) }}...</p>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#serviceModal{{ service.idService }}">
+                                    <i class="fas fa-info-circle me-1"></i>Plus de détails
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+
+</div>
+
+<style>
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bs-light);
+        transition: all 0.3s ease;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .badge {
+        padding: 0.5em 1em;
+        font-weight: 500;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .breadcrumb-item a {
+        color: var(--bs-primary);
+    }
+
+    .breadcrumb-item.active {
+        color: var(--bs-gray-600);
+    }
+
+    .divider {
+        width: 50px;
+        height: 3px;
+        background-color: var(--bs-primary);
+        margin: 1rem 0;
+    }
+
+    .description-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .service-card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+
+    @media (max-width: 768px) {
+        .card-img-top {
+            height: 300px !important;
+        }
+    }
+</style>
+{% endblock %} 

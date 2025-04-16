@@ -1,0 +1,86 @@
+{% extends 'pack/index.html.twig' %}
+{{ form_start(form, {'attr': {'class': 'pack-form', 'enctype': 'multipart/form-data'}}) }}
+    <div class="row g-3">
+        <div class="col-md-6">
+            {{ form_row(form.nom, {
+                'attr': {'class': 'form-control'},
+                'label': 'Nom du pack'
+            }) }}
+        </div>
+        
+        <div class="col-md-6">
+            {{ form_row(form.type, {
+                'attr': {'class': 'form-select'},
+                'label': 'Type d\'événement'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.prix, {
+                'attr': {'class': 'form-control'},
+                'label': 'Prix (€)'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.nbreInvitesMax, {
+                'attr': {'class': 'form-control'},
+                'label': 'Nombre d\'invités maximum'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.budgetPrevu, {
+                'attr': {'class': 'form-control'},
+                'label': 'Budget prévu (€)'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.dateEvenement, {
+                'attr': {'class': 'form-control'},
+                'label': 'Date de l\'événement'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.lieu, {
+                'attr': {'class': 'form-select'},
+                'label': 'Lieu'
+            }) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(form.statut, {
+                'attr': {'class': 'form-select'},
+                'label': 'Statut'
+            }) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(form.services, {
+                'attr': {'class': 'form-check'},
+                'label': 'Services'
+            }) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(form.description, {
+                'attr': {'class': 'form-control', 'rows': 3},
+                'label': 'Description'
+            }) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(form.photoFile, {
+                'attr': {'class': 'form-control'},
+                'label': 'Photo'
+            }) }}
+        </div>
+    </div>
+
+    <div class="text-end mt-4">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </div>
+{{ form_end(form) }} 

@@ -1,0 +1,105 @@
+{% extends 'front/base1.html.twig' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-white">
+                    <h2 class="h4 mb-0">
+                        <i class="fas fa-edit me-2"></i>Modifier le pack
+                    </h2>
+                </div>
+                <div class="card-body">
+                {{ form_start(form, {'attr': {'id': 'pack-form', 'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': ' '}}) }}
+                                {{ form_label(form.nom) }}
+                                <div class="invalid-feedback">
+                                    Veuillez entrer un nom pour le pack.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.type, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_label(form.type) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': ' '}}) }}
+                                {{ form_label(form.prix) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.nbreInvitesMax, {'attr': {'class': 'form-control', 'placeholder': ' '}}) }}
+                                {{ form_label(form.nbreInvitesMax) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.budgetPrevu, {'attr': {'class': 'form-control', 'placeholder': ' '}}) }}
+                                {{ form_label(form.budgetPrevu) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.dateEvenement, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_label(form.dateEvenement) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.lieu, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_label(form.lieu) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.photo, {'attr': {'class': 'form-control', 'placeholder': ' '}}) }}
+                                {{ form_label(form.photo) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_label(form.statut) }}
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'style': 'height: 100px', 'placeholder': ' '}}) }}
+                                {{ form_label(form.description) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{{ path('cattagPack') }}" class="btn btn-outline-secondary me-md-2">
+                            <i class="fas fa-arrow-left me-2"></i>Retour
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-save me-2"></i>Enregistrer les modifications
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
